@@ -1,0 +1,10 @@
+<div class="header" [class.mat-elevation-z3]="isScrolled">
+    Header works
+
+    <div class="loading-indicator">
+        <mat-progress-bar
+            *ngIf="navigation.isLoadingIndicated"
+            mode="indeterminate"
+        ></mat-progress-bar>
+    </div>
+</div>

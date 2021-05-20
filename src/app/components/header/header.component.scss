@@ -1,0 +1,20 @@
+.header {
+    background: #fafafadd;
+
+    @supports (
+        (-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))
+    ) {
+        background: #fafafa22;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    &,
+    * {
+        transition: 0.3s;
+    }
+
+    .loading-indicator {
+        height: 4px;
+    }
+}
