@@ -14,6 +14,14 @@
         transition: 0.3s;
     }
 
+    .header-content {
+        padding: 24px 24px 20px;
+
+        @media (max-width: 767.98px) {
+            padding: 16px 16px 12px;
+        }
+    }
+
     .loading-indicator {
         height: 4px;
     }
