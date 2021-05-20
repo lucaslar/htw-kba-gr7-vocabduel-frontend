@@ -1,10 +1,30 @@
-<div class="header" [class.mat-elevation-z3]="isScrolled">
-    <div class="header-content">Header works</div>
+<mat-toolbar [class.mat-elevation-z3]="isScrolled">
+    <mat-toolbar-row class="header-content">
+        <div class="flex-grow-1">Header works</div>
 
-    <div class="loading-indicator">
+        <!-- TODO Hamburger on small screens => use navigation service logic -->
+        <!-- TODO: Implement on click logic -->
+
+        <div class="flex-grow-0">
+            <button mat-icon-button color="primary">
+                <mat-icon>home</mat-icon>
+            </button>
+            <button mat-icon-button color="primary">
+                <mat-icon>person</mat-icon>
+            </button>
+            <button mat-icon-button color="primary">
+                <mat-icon>language</mat-icon>
+            </button>
+            <button mat-icon-button color="warn">
+                <mat-icon>power_settings_new</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row class="loading-indicator vw-100 p-0">
         <mat-progress-bar
             *ngIf="navigation.isLoadingIndicated"
             mode="indeterminate"
         ></mat-progress-bar>
-    </div>
-</div>
+    </mat-toolbar-row>
+</mat-toolbar>
