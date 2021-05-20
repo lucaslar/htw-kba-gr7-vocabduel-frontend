@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
     declarations: [],
@@ -16,6 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
         MatButtonModule,
         MatCardModule,
         MatIconModule,
+        MatListModule,
         MatProgressBarModule,
         MatSnackBarModule,
         MatSidenavModule,

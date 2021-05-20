@@ -1,3 +1,11 @@
 {
-  "hello": "Hello!"
+    "header": {
+        "appTitle": "Vocabduel",
+        "actions": {
+            "home": "Dashboard",
+            "profile": "Profile",
+            "language": "Language selection",
+            "logout": "Logout"
+        }
+    }
 }

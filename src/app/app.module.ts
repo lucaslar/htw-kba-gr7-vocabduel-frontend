@@ -11,6 +11,7 @@ import { MaterialModule } from './modules/material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { EllipsisTooltipDirective } from './directives/ellipsis-tooltip.directive';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SidenavContentComponent } from './components/sidenav-content/sidenav-content.component';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +23,7 @@ const HttpLoaderFactory = (http: HttpClient) => {
         HeaderComponent,
         EllipsisTooltipDirective,
         DashboardComponent,
+        SidenavContentComponent,
     ],
     imports: [
         BrowserModule,

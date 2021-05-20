@@ -9,22 +9,21 @@
             <mat-icon>menu</mat-icon>
         </button>
 
-        <div appEllipsisTooltip class="flex-grow-1">Header works!</div>
-
-        <!-- TODO: Implement on click logic -->
+        <div appEllipsisTooltip class="flex-grow-1">
+            {{ 'header.appTitle' | translate }}
+        </div>
 
         <div class="flex-grow-0 d-none d-sm-inline">
-            <button mat-icon-button color="primary">
-                <mat-icon>home</mat-icon>
-            </button>
-            <button mat-icon-button color="primary">
-                <mat-icon>person</mat-icon>
-            </button>
-            <button mat-icon-button color="primary">
-                <mat-icon>language</mat-icon>
-            </button>
-            <button mat-icon-button color="warn">
-                <mat-icon>power_settings_new</mat-icon>
+            <button
+                *ngFor="let action of navigation.navigationItems"
+                mat-icon-button
+                [class]="action.colorClass"
+                [matTooltip]="action.translationKey | translate"
+                (click)="action.onClick()"
+            >
+                <mat-icon>
+                    {{ action.icon }}
+                </mat-icon>
             </button>
         </div>
     </mat-toolbar-row>
