@@ -10,13 +10,19 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from './modules/material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { EllipsisTooltipDirective } from './directives/ellipsis-tooltip.directive';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 };
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent, EllipsisTooltipDirective],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        EllipsisTooltipDirective,
+        DashboardComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
