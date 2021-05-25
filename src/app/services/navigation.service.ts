@@ -11,7 +11,7 @@ export class NavigationService {
 
     readonly navigationItems = [
         {
-            icon: 'home',
+            icon: 'dashboard',
             translationKey: 'header.actions.home',
             colorClass: 'color-primary',
             onClick: async () => {
