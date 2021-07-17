@@ -23,7 +23,7 @@ export class UnauthorizedGuard implements CanActivate {
             map((user) => !user),
             tap((isLoggedOut) => {
                 if (!isLoggedOut) {
-                    this.router.navigate(['/vac-dashboard']).then();
+                    this.router.navigate(['/dashboard']).then();
                 }
             })
         );
