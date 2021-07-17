@@ -35,6 +35,12 @@
             },
             "register": "Register",
             "orSignIn": "Already have an account? Sign in"
+        },
+        "login": {
+            "title": "Login",
+            "subtitle": "Log in to your Vocabduel account",
+            "login": "Sign in",
+            "orSignUp": "Don't have an account yet? Sign up"
         }
     }
 }
