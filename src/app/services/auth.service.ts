@@ -7,25 +7,14 @@ import { switchMap, tap } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { LoginData } from '../model/internal/login-data';
 import { StorageService } from './storage.service';
-
-// TODO move to own files
-
-export class ReturnedType {
-    readonly token: string = '';
-    readonly refreshToken: string = '';
-    readonly userData: any;
-}
-
-export class TokenResponse {
-    readonly token: string = '';
-    readonly refreshToken: string = '';
-}
+import { LoggedInUser } from '../model/logged-in-user';
+import { TokenData } from '../model/token-data';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
-    private readonly user$ = new BehaviorSubject<ReturnedType | null>(null);
+    private readonly user$ = new BehaviorSubject<LoggedInUser | null>(null);
 
     constructor(
         private readonly http: HttpClient,
@@ -39,7 +28,7 @@ export class AuthService {
     login(loginData: LoginData): void {
         const url = `${environment.endpointUrl}/auth/login`;
         this.http
-            .post<ReturnedType>(url, loginData)
+            .post<LoggedInUser>(url, loginData)
             .subscribe((result) => this.onSuccessfulAuth(result));
     }
 
@@ -47,14 +36,14 @@ export class AuthService {
     register(userData: any): void {
         const url = `${environment.endpointUrl}/auth/register`;
         this.http
-            .post<ReturnedType>(url, userData)
+            .post<LoggedInUser>(url, userData)
             .subscribe((result) => this.onSuccessfulAuth(result));
     }
 
-    get refreshToken$(): Observable<TokenResponse> {
+    get refreshToken$(): Observable<TokenData> {
         const refreshToken = this.storage.refreshToken;
         const url = `${environment.endpointUrl}/auth/refresh-token`;
-        return this.http.post<TokenResponse>(url, { refreshToken }).pipe(
+        return this.http.post<TokenData>(url, { refreshToken }).pipe(
             tap((response) => {
                 this.storage.token = response.token;
                 this.storage.refreshToken = response.refreshToken;
@@ -62,7 +51,7 @@ export class AuthService {
         );
     }
 
-    get currentUser$(): Observable<ReturnedType | null> {
+    get currentUser$(): Observable<LoggedInUser | null> {
         return this.user$.pipe(
             switchMap((user) => {
                 if (user) return of(user);
@@ -79,22 +68,22 @@ export class AuthService {
         this.user$.next(null);
     }
 
-    private get fetchCurrentUser$(): Observable<ReturnedType> {
+    private get fetchCurrentUser$(): Observable<LoggedInUser> {
         return this.http
-            .get<ReturnedType>(`${environment.endpointUrl}/auth/current-user`)
+            .get<LoggedInUser>(`${environment.endpointUrl}/auth/current-user`)
             .pipe(
                 tap((user) => {
                     if (!user) this.storage.token = null;
-                    this.user$.next(user.userData);
+                    this.user$.next(user);
                 })
             );
     }
 
-    private onSuccessfulAuth(result: ReturnedType): void {
-        this.storage.token = result.token;
-        this.storage.refreshToken = result.refreshToken;
-        console.log(result.userData);
-        this.user$.next(result.userData);
+    private onSuccessfulAuth(result: LoggedInUser): void {
+        this.storage.token = result.authTokens.token;
+        this.storage.refreshToken = result.authTokens.refreshToken;
+        console.log(result);
+        this.user$.next(result);
         this.router.navigate(['dashboard']).then();
     }
 }
