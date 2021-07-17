@@ -9,7 +9,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import {MatDialogModule} from "@angular/material/dialog";
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
     declarations: [],
@@ -18,7 +20,9 @@ import {MatDialogModule} from "@angular/material/dialog";
         MatButtonModule,
         MatCardModule,
         MatDialogModule,
+        MatFormFieldModule,
         MatIconModule,
+        MatInputModule,
         MatListModule,
         MatProgressBarModule,
         MatSnackBarModule,

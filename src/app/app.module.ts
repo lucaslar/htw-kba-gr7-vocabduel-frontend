@@ -17,6 +17,7 @@ import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-di
 import { LoginComponent } from './components/main/login/login.component';
 import { RegistrationComponent } from './components/main/registration/registration.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
+import { FormsModule } from '@angular/forms';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,6 +47,7 @@ const HttpLoaderFactory = (http: HttpClient) => {
             },
         }),
         MaterialModule,
+        FormsModule,
     ],
     providers: [
         {

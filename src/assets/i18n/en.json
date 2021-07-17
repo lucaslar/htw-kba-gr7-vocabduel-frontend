@@ -15,6 +15,26 @@
         }
     },
     "general": {
-        "close": "Close"
+        "close": "Close",
+        "user": {
+            "username": "Username",
+            "firstName": "First name",
+            "lastName": "Last name",
+            "email": "Email",
+            "password": "Password",
+            "confirm": "Confirm password"
+        }
+    },
+    "main": {
+        "registration": {
+            "title": "Registration",
+            "subtitle": "Create an account and start playing, contributing and learning!",
+            "section": {
+                "personalData": "Personal data",
+                "security": "Security"
+            },
+            "register": "Register",
+            "orSignIn": "Already have an account? Sign in"
+        }
     }
 }
