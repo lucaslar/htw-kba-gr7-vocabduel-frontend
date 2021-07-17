@@ -37,7 +37,7 @@ export class AuthService {
     // TODO Implement procedure after registration/login
 
     login(loginData: LoginData): void {
-        const url = `${environment.endpointUrl}/login`;
+        const url = `${environment.endpointUrl}/auth/login`;
         this.http
             .post<ReturnedType>(url, loginData)
             .subscribe((result) => this.onSuccessfulAuth(result));
@@ -45,7 +45,7 @@ export class AuthService {
 
     // TODO: Typify
     register(userData: any): void {
-        const url = `${environment.endpointUrl}/register`;
+        const url = `${environment.endpointUrl}/auth/register`;
         this.http
             .post<ReturnedType>(url, userData)
             .subscribe((result) => this.onSuccessfulAuth(result));
@@ -53,7 +53,7 @@ export class AuthService {
 
     get refreshToken$(): Observable<TokenResponse> {
         const refreshToken = this.storage.refreshToken;
-        const url = `${environment.endpointUrl}/refresh-token`;
+        const url = `${environment.endpointUrl}/auth/refresh-token`;
         return this.http.post<TokenResponse>(url, { refreshToken }).pipe(
             tap((response) => {
                 this.storage.token = response.token;
@@ -81,7 +81,7 @@ export class AuthService {
 
     private get fetchCurrentUser$(): Observable<ReturnedType> {
         return this.http
-            .get<ReturnedType>(`${environment.endpointUrl}/current-user`)
+            .get<ReturnedType>(`${environment.endpointUrl}/auth/current-user`)
             .pipe(
                 tap((user) => {
                     if (!user) this.storage.token = null;
