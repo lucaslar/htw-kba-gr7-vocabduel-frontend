@@ -17,4 +17,5 @@ export class RegistrationComponent {
     };
 
     constructor(readonly auth: AuthService) {}
+  // TODO Error handling
 }
