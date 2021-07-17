@@ -14,6 +14,8 @@ import { DashboardComponent } from './components/main/dashboard/dashboard.compon
 import { SidenavContentComponent } from './components/sidenav-content/sidenav-content.component';
 import { ErrorService } from './services/error.service';
 import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
+import { LoginComponent } from './components/main/login/login.component';
+import { RegistrationComponent } from './components/main/registration/registration.component';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -27,6 +29,8 @@ const HttpLoaderFactory = (http: HttpClient) => {
         DashboardComponent,
         SidenavContentComponent,
         ErrorDialogComponent,
+        LoginComponent,
+        RegistrationComponent,
     ],
     imports: [
         BrowserModule,
