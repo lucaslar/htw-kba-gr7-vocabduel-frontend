@@ -10,7 +10,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from './modules/material.module';
 import { HeaderComponent } from './components/header/header.component';
 import { EllipsisTooltipDirective } from './directives/ellipsis-tooltip.directive';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './components/main/dashboard/dashboard.component';
 import { SidenavContentComponent } from './components/sidenav-content/sidenav-content.component';
 import { ErrorService } from './services/error.service';
 import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
