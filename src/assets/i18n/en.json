@@ -3,7 +3,7 @@
         "appTitle": "Vocabduel",
         "actions": {
             "home": "Dashboard",
-            "profile": "Profile",
+            "settings": "Settings",
             "language": "Language selection",
             "logout": "Logout"
         }
@@ -12,6 +12,14 @@
         "error": {
             "title": "Oops, something happened...",
             "message": "The following error occurred:"
+        },
+        "settings": {
+            "url": "Server URL",
+            "userSettings": "User settings",
+            "reset": {
+                "action": "Reset",
+                "tooltip": "Reset to default ({{ defaultUrl }})"
+            }
         }
     },
     "snackbar": {
@@ -19,6 +27,7 @@
     },
     "general": {
         "close": "Close",
+        "save": "Save",
         "user": {
             "username": "Username",
             "firstName": "First name",

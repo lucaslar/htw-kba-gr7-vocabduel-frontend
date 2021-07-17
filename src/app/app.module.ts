@@ -23,6 +23,7 @@ import { RegistrationComponent } from './components/main/registration/registrati
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './helpers/auth-interceptor';
+import { SettingsComponent } from './components/dialogs/settings/settings.component';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,6 +39,7 @@ const HttpLoaderFactory = (http: HttpClient) => {
         ErrorDialogComponent,
         LoginComponent,
         RegistrationComponent,
+        SettingsComponent,
     ],
     imports: [
         BrowserModule,

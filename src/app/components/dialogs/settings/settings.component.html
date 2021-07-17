@@ -1,0 +1,70 @@
+<div mat-dialog-title class="d-flex color-primary">
+    <mat-icon class="mr-3 my-auto">settings</mat-icon>
+    <div class="my-auto">
+        {{ 'header.actions.settings' | translate }}
+    </div>
+</div>
+<mat-dialog-content [@.disabled]="disableAnimation" class="d-flex">
+    <mat-accordion class="mx-n3">
+        <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="d-flex">
+                    <mat-icon class="my-auto mr-2">dns</mat-icon>
+                    <strong class="my-auto">
+                        {{ 'dialog.settings.url' | translate }}
+                    </strong>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form>
+                <mat-form-field
+                    appearance="outline"
+                    color="primary"
+                    id="endpoint-input"
+                >
+                    <input
+                        matInput
+                        [value]="storage.endpointUrl"
+                        name="endpointUrl"
+                        #urlInput
+                    />
+                    <mat-label>
+                        {{ 'dialog.settings.url' | translate }}
+                    </mat-label>
+                </mat-form-field>
+                <div class="d-flex">
+                    <div class="flex-grow-1"></div>
+                    <div class="flex-grow-0 m-n2">
+                        <button
+                            type="button"
+                            class="m-2"
+                            mat-flat-button
+                            [matTooltip]="
+                                'dialog.settings.reset.tooltip'
+                                    | translate: { defaultUrl: defaultEndpoint }
+                            "
+                            [disabled]="urlInput.value === defaultEndpoint"
+                            (click)="
+                                storage.endpointUrl = null;
+                                urlInput.value = defaultEndpoint
+                            "
+                        >
+                            <mat-icon>refresh</mat-icon>
+                            {{ 'dialog.settings.reset.action' | translate }}
+                        </button>
+                        <button
+                            mat-flat-button
+                            color="primary"
+                            class="m-2"
+                            [disabled]="urlInput.value === storage.endpointUrl"
+                            (click)="storage.endpointUrl = urlInput.value"
+                        >
+                            <mat-icon>save</mat-icon>
+                            {{ 'general.save' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-expansion-panel>
+        <!-- TODO: Continue with user settings -->
+    </mat-accordion>
+</mat-dialog-content>

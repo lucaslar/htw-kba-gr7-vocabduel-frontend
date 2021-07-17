@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { SettingsComponent } from '../components/dialogs/settings/settings.component';
 
 @Injectable({
     providedIn: 'root',
@@ -15,16 +17,13 @@ export class NavigationService {
             icon: 'dashboard',
             translationKey: 'header.actions.home',
             colorClass: 'color-primary',
-            onClick: async () => {
-                this.isSidebarOpened = false;
-                await this.router.navigate(['dashboard']);
-            },
+            onClick: async () => this.onDashboardClicked(),
         },
         {
-            icon: 'person',
-            translationKey: 'header.actions.profile',
+            icon: 'settings',
+            translationKey: 'header.actions.settings',
             colorClass: 'color-primary',
-            onClick: () => console.log('to be implemented'),
+            onClick: () => this.onSettingsClicked(),
         },
         {
             icon: 'language',
@@ -45,7 +44,8 @@ export class NavigationService {
     constructor(
         media: MediaMatcher,
         private readonly router: Router,
-        private readonly auth: AuthService
+        private readonly auth: AuthService,
+        private readonly dialog: MatDialog
     ) {
         this.mobileQuery = media.matchMedia('(max-width: 576px)');
         // TODO: Use "is loading indicated" in a way that makes sense
@@ -56,5 +56,14 @@ export class NavigationService {
         if (!this.mobileQuery.matches) {
             this.isSidebarOpened = false;
         }
+    }
+
+    private onSettingsClicked(): void {
+        this.dialog.open(SettingsComponent);
+    }
+
+    private async onDashboardClicked() {
+        this.isSidebarOpened = false;
+        await this.router.navigate(['dashboard']);
     }
 }
