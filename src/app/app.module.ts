@@ -16,6 +16,7 @@ import { ErrorService } from './services/error.service';
 import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
 import { LoginComponent } from './components/main/login/login.component';
 import { RegistrationComponent } from './components/main/registration/registration.component';
+import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -51,6 +52,8 @@ const HttpLoaderFactory = (http: HttpClient) => {
             provide: ErrorHandler,
             useClass: ErrorService,
         },
+        { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+        JwtHelperService,
     ],
     bootstrap: [AppComponent],
 })
