@@ -15,9 +15,8 @@ import { catchError, filter, switchMap, take } from 'rxjs/operators';
 export class AuthInterceptor implements HttpInterceptor {
     private readonly tokenHeader = 'x-access-token';
     private refreshingInProgress = false;
-    private readonly accessTokenSubject: BehaviorSubject<
-        string | null
-    > = new BehaviorSubject<string | null>(null);
+    private readonly accessTokenSubject: BehaviorSubject<string | null> =
+        new BehaviorSubject<string | null>(null);
 
     constructor(
         private readonly storage: StorageService,

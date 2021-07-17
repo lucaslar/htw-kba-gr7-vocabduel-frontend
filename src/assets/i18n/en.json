@@ -14,6 +14,9 @@
             "message": "The following error occurred:"
         }
     },
+    "snackbar": {
+        "tokenWasRefreshed": "Token has been refreshed successfully!"
+    },
     "general": {
         "close": "Close",
         "user": {

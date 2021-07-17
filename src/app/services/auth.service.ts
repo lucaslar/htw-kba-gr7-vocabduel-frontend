@@ -9,6 +9,8 @@ import { LoginData } from '../model/internal/login-data';
 import { StorageService } from './storage.service';
 import { LoggedInUser } from '../model/logged-in-user';
 import { TokenData } from '../model/token-data';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
     providedIn: 'root',
@@ -20,7 +22,9 @@ export class AuthService {
         private readonly http: HttpClient,
         private readonly storage: StorageService,
         private readonly jwtHelper: JwtHelperService,
-        private readonly router: Router
+        private readonly router: Router,
+        private readonly snackbar: MatSnackBar,
+        private readonly translation: TranslateService
     ) {}
 
     // TODO Implement procedure after registration/login
@@ -43,10 +47,11 @@ export class AuthService {
     get refreshToken$(): Observable<TokenData> {
         const refreshToken = this.storage.refreshToken;
         const url = `${environment.endpointUrl}/auth/refresh-token`;
-        return this.http.post<TokenData>(url, { refreshToken }).pipe(
+        return this.http.post<TokenData>(url, refreshToken).pipe(
             tap((response) => {
                 this.storage.token = response.token;
                 this.storage.refreshToken = response.refreshToken;
+                this.showTokenRefreshInfo();
             })
         );
     }
@@ -82,8 +87,13 @@ export class AuthService {
     private onSuccessfulAuth(result: LoggedInUser): void {
         this.storage.token = result.authTokens.token;
         this.storage.refreshToken = result.authTokens.refreshToken;
-        console.log(result);
         this.user$.next(result);
         this.router.navigate(['dashboard']).then();
+    }
+
+    private showTokenRefreshInfo(): void {
+        const close = this.translation.instant('general.close');
+        const refresh = this.translation.instant('snackbar.tokenWasRefreshed');
+        this.snackbar.open(refresh, close, { duration: 3000 });
     }
 }
