@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root',
@@ -35,13 +36,17 @@ export class NavigationService {
             icon: 'power_settings_new',
             translationKey: 'header.actions.logout',
             colorClass: 'color-warn',
-            onClick: () => console.log('to be implemented'),
+            onClick: () => this.auth.logout(),
         },
     ];
 
     private readonly mobileQuery: MediaQueryList;
 
-    constructor(media: MediaMatcher, private readonly router: Router) {
+    constructor(
+        media: MediaMatcher,
+        private readonly router: Router,
+        private readonly auth: AuthService
+    ) {
         this.mobileQuery = media.matchMedia('(max-width: 576px)');
         // TODO: Use "is loading indicated" in a way that makes sense
         setTimeout(() => (this.isLoadingIndicated = false), 2000);
