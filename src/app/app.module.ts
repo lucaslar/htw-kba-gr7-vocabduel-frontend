@@ -5,7 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {
+    HTTP_INTERCEPTORS,
+    HttpClient,
+    HttpClientModule,
+} from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from './modules/material.module';
 import { HeaderComponent } from './components/header/header.component';
@@ -18,6 +22,7 @@ import { LoginComponent } from './components/main/login/login.component';
 import { RegistrationComponent } from './components/main/registration/registration.component';
 import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { FormsModule } from '@angular/forms';
+import { AuthInterceptor } from './helpers/auth-interceptor';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -56,6 +61,7 @@ const HttpLoaderFactory = (http: HttpClient) => {
         },
         { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
         JwtHelperService,
+        { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     ],
     bootstrap: [AppComponent],
 })
