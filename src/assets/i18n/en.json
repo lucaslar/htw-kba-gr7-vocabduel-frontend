@@ -7,5 +7,14 @@
             "language": "Language selection",
             "logout": "Logout"
         }
+    },
+    "dialog": {
+        "error": {
+            "title": "Oops, something happened...",
+            "message": "The following error occurred:"
+        }
+    },
+    "general": {
+        "close": "Close"
     }
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { EllipsisTooltipDirective } from './directives/ellipsis-tooltip.directive';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidenavContentComponent } from './components/sidenav-content/sidenav-content.component';
+import { ErrorService } from './services/error.service';
+import { ErrorDialogComponent } from './components/dialogs/error-dialog/error-dialog.component';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -24,6 +26,7 @@ const HttpLoaderFactory = (http: HttpClient) => {
         EllipsisTooltipDirective,
         DashboardComponent,
         SidenavContentComponent,
+        ErrorDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -39,7 +42,12 @@ const HttpLoaderFactory = (http: HttpClient) => {
         }),
         MaterialModule,
     ],
-    providers: [],
+    providers: [
+        {
+            provide: ErrorHandler,
+            useClass: ErrorService,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}
