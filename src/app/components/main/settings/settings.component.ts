@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../services/auth.service';
 import { StorageService } from '../../../services/storage.service';
@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.scss'],
 })
-export class SettingsComponent {
+export class SettingsComponent implements OnInit {
     readonly defaultEndpoint = environment.endpointUrl;
 
     constructor(
@@ -19,6 +19,10 @@ export class SettingsComponent {
         private readonly snackbar: MatSnackBar,
         private readonly translate: TranslateService
     ) {}
+
+    ngOnInit(): void {
+        this.auth.currentUser$.subscribe();
+    }
 
     showSnackbar(messageKey: string): void {
         this.snackbar.open(
