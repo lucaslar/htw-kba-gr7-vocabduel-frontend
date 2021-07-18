@@ -13,7 +13,6 @@ import { catchError, filter, switchMap, take } from 'rxjs/operators';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-    private readonly tokenHeader = 'x-access-token';
     private refreshingInProgress = false;
     private readonly accessTokenSubject: BehaviorSubject<string | null> =
         new BehaviorSubject<string | null>(null);
@@ -49,7 +48,9 @@ export class AuthInterceptor implements HttpInterceptor {
         token: string | null
     ): HttpRequest<any> {
         return token
-            ? req.clone({ headers: req.headers.set(this.tokenHeader, token) })
+            ? req.clone({
+                  headers: req.headers.set('Authorization', 'Bearer ' + token),
+              })
             : req;
     }
 
