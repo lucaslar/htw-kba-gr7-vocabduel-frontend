@@ -21,7 +21,7 @@
                         }}:
                     </strong>
                 </div>
-                <pre class="d-table-cell">{{ storage.token }}</pre>
+                <div class="d-table-cell token">{{ storage.token }}</div>
             </div>
             <div class="d-table-row">
                 <div class="d-table-cell pr-2">
@@ -31,7 +31,7 @@
                         }}:
                     </strong>
                 </div>
-                <pre class="d-table-cell">{{ storage.refreshToken }}</pre>
+                <div class="d-table-cell token">{{ storage.refreshToken }}</div>
             </div>
         </div>
     </mat-card-content>
@@ -40,7 +40,7 @@
 <mat-accordion [multi]="true">
     <mat-expansion-panel>
         <mat-expansion-panel-header>
-            <mat-panel-title class="d-flex">
+            <mat-panel-title class="d-flex color-primary">
                 <mat-icon class="my-auto mr-2">dns</mat-icon>
                 <strong class="my-auto">
                     {{ 'main.settings.url' | translate }}
@@ -59,9 +59,8 @@
                     {{ 'main.settings.url' | translate }}
                 </mat-label>
             </mat-form-field>
-            <div class="d-flex">
-                <div class="flex-grow-1"></div>
-                <div class="flex-grow-0 m-n2">
+            <div class="d-flex m-n2">
+                <div class="ml-auto">
                     <button
                         type="button"
                         class="m-2"
