@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
     providedIn: 'root',
@@ -43,8 +42,7 @@ export class NavigationService {
     constructor(
         media: MediaMatcher,
         private readonly router: Router,
-        private readonly auth: AuthService,
-        private readonly dialog: MatDialog
+        private readonly auth: AuthService
     ) {
         this.mobileQuery = media.matchMedia('(max-width: 576px)');
         // TODO: Use "is loading indicated" in a way that makes sense
