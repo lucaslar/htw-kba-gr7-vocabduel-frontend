@@ -3,7 +3,6 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
 import { MatDialog } from '@angular/material/dialog';
-import { SettingsComponent } from '../components/dialogs/settings/settings.component';
 
 @Injectable({
     providedIn: 'root',
@@ -17,13 +16,13 @@ export class NavigationService {
             icon: 'dashboard',
             translationKey: 'header.actions.home',
             colorClass: 'color-primary',
-            onClick: async () => this.onDashboardClicked(),
+            onClick: async () => this.navigateAndClose('dashboard'),
         },
         {
             icon: 'settings',
             translationKey: 'header.actions.settings',
             colorClass: 'color-primary',
-            onClick: () => this.onSettingsClicked(),
+            onClick: async () => this.navigateAndClose('settings'),
         },
         {
             icon: 'language',
@@ -58,12 +57,8 @@ export class NavigationService {
         }
     }
 
-    private onSettingsClicked(): void {
-        this.dialog.open(SettingsComponent);
-    }
-
-    private async onDashboardClicked() {
+    private async navigateAndClose(path: string): Promise<void> {
         this.isSidebarOpened = false;
-        await this.router.navigate(['dashboard']);
+        await this.router.navigate([path]);
     }
 }

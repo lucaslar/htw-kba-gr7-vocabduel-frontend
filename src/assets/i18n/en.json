@@ -12,14 +12,6 @@
         "error": {
             "title": "Oops, something happened...",
             "message": "The following error occurred:"
-        },
-        "settings": {
-            "url": "Server URL",
-            "userSettings": "User settings",
-            "reset": {
-                "action": "Reset",
-                "tooltip": "Reset to default ({{ defaultUrl }})"
-            }
         }
     },
     "snackbar": {
@@ -28,6 +20,7 @@
     "general": {
         "close": "Close",
         "save": "Save",
+        "proTip": "Pro tip",
         "user": {
             "username": "Username",
             "firstName": "First name",
@@ -53,6 +46,21 @@
             "subtitle": "Log in to your Vocabduel account",
             "login": "Sign in",
             "orSignUp": "Don't have an account yet? Sign up"
+        },
+        "settings": {
+            "title": "Settings",
+            "subtitle": "Manage the application's and your personal data",
+            "authTokens": {
+                "info": "If you want to access the API, you can use your auth tokens. But beware of their expiration time. Your access token has to be refreshed after 5 minutes - in this client, this is done automatically.",
+                "accessToken": "Access Token",
+                "refreshToken": "Refresh Token"
+            },
+            "url": "Server URL",
+            "userSettings": "User settings",
+            "reset": {
+                "action": "Reset",
+                "tooltip": "Reset to default ({{ defaultUrl }})"
+            }
         }
     }
 }

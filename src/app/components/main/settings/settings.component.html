@@ -1,0 +1,97 @@
+<div class="mb-3 d-flex">
+    <mat-icon class="flex-grow-0 mr-2 my-auto">settings</mat-icon>
+    <h1 class="flex-grow-1 my-auto" appEllipsisTooltip>
+        {{ 'main.settings.title' | translate }}
+    </h1>
+</div>
+
+<mat-card class="mb-3 p-4" *ngIf="storage.refreshToken && storage.token">
+    <mat-card-content>
+        <strong class="color-primary">
+            {{ 'general.proTip' | translate }}:
+        </strong>
+        {{ 'main.settings.authTokens.info' | translate }}
+
+        <div class="d-table mt-1">
+            <div class="d-table-row">
+                <div class="d-table-cell pr-2">
+                    <strong>
+                        {{
+                            'main.settings.authTokens.accessToken' | translate
+                        }}:
+                    </strong>
+                </div>
+                <pre class="d-table-cell">{{ storage.token }}</pre>
+            </div>
+            <div class="d-table-row">
+                <div class="d-table-cell pr-2">
+                    <strong>
+                        {{
+                            'main.settings.authTokens.refreshToken' | translate
+                        }}:
+                    </strong>
+                </div>
+                <pre class="d-table-cell">{{ storage.refreshToken }}</pre>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-accordion [multi]="true">
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title class="d-flex">
+                <mat-icon class="my-auto mr-2">dns</mat-icon>
+                <strong class="my-auto">
+                    {{ 'main.settings.url' | translate }}
+                </strong>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form>
+            <mat-form-field appearance="outline" color="primary" class="w-100">
+                <input
+                    matInput
+                    [value]="storage.endpointUrl"
+                    name="endpointUrl"
+                    #urlInput
+                />
+                <mat-label>
+                    {{ 'main.settings.url' | translate }}
+                </mat-label>
+            </mat-form-field>
+            <div class="d-flex">
+                <div class="flex-grow-1"></div>
+                <div class="flex-grow-0 m-n2">
+                    <button
+                        type="button"
+                        class="m-2"
+                        mat-flat-button
+                        [matTooltip]="
+                            'main.settings.reset.tooltip'
+                                | translate: { defaultUrl: defaultEndpoint }
+                        "
+                        [disabled]="urlInput.value === defaultEndpoint"
+                        (click)="
+                            storage.endpointUrl = null;
+                            urlInput.value = defaultEndpoint
+                        "
+                    >
+                        <mat-icon>refresh</mat-icon>
+                        {{ 'main.settings.reset.action' | translate }}
+                    </button>
+                    <button
+                        mat-flat-button
+                        color="primary"
+                        class="m-2"
+                        [disabled]="urlInput.value === storage.endpointUrl"
+                        (click)="storage.endpointUrl = urlInput.value"
+                    >
+                        <mat-icon>save</mat-icon>
+                        {{ 'general.save' | translate }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </mat-expansion-panel>
+    <!-- TODO: Continue with user settings -->
+</mat-accordion>
