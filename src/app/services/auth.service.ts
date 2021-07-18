@@ -66,7 +66,7 @@ export class AuthService {
 
     updatePassword(data: PasswordData): void {
         const url = `${this.storage.endpointUrl}/auth/update-password`;
-        this.http.post<TokenData>(url, data).subscribe(() => {
+        this.http.put<TokenData>(url, data).subscribe(() => {
             data.currentPassword = '';
             data.newPassword = '';
             data.confirm = '';
