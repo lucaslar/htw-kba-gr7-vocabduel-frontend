@@ -15,7 +15,9 @@
         }
     },
     "snackbar": {
-        "tokenWasRefreshed": "Token has been refreshed successfully!"
+        "tokenWasRefreshed": "Token has been refreshed successfully!",
+        "endpointUrlSet": "Endpoint URL has been set successfully",
+        "defaultUrlReset": "Endpoint URL has been reset to its default value"
     },
     "general": {
         "close": "Close",
@@ -49,7 +51,6 @@
         },
         "settings": {
             "title": "Settings",
-            "subtitle": "Manage the application's and your personal data",
             "authTokens": {
                 "info": "If you want to access the API, you can use your auth tokens. But beware of their expiration time. Your access token has to be refreshed after 5 minutes - in this client, this is done automatically.",
                 "accessToken": "Access Token",

@@ -69,10 +69,11 @@
                             'main.settings.reset.tooltip'
                                 | translate: { defaultUrl: defaultEndpoint }
                         "
-                        [disabled]="urlInput.value === defaultEndpoint"
+                        [disabled]="storage.endpointUrl === defaultEndpoint"
                         (click)="
                             storage.endpointUrl = null;
-                            urlInput.value = defaultEndpoint
+                            urlInput.value = defaultEndpoint;
+                            showSnackbar('snackbar.defaultUrlReset')
                         "
                     >
                         <mat-icon>refresh</mat-icon>
@@ -83,7 +84,10 @@
                         color="primary"
                         class="m-2"
                         [disabled]="urlInput.value === storage.endpointUrl"
-                        (click)="storage.endpointUrl = urlInput.value"
+                        (click)="
+                            storage.endpointUrl = urlInput.value;
+                            showSnackbar('snackbar.endpointUrlSet')
+                        "
                     >
                         <mat-icon>save</mat-icon>
                         {{ 'general.save' | translate }}
