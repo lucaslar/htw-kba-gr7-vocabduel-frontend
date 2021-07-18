@@ -11,7 +11,8 @@
     "dialog": {
         "error": {
             "title": "Oops, something happened...",
-            "message": "The following error occurred:"
+            "message": "The following error occurred:",
+            "adjustEndpointHint": "Even if not logged in, you can configure the path to the API in this application's settings."
         }
     },
     "snackbar": {
