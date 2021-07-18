@@ -8,8 +8,8 @@ import { LoginData } from '../model/internal/login-data';
 import { StorageService } from './storage.service';
 import { LoggedInUser } from '../model/logged-in-user';
 import { TokenData } from '../model/token-data';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
+import { PasswordData } from '../model/internal/password-data';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
     providedIn: 'root',
@@ -22,8 +22,7 @@ export class AuthService {
         private readonly storage: StorageService,
         private readonly jwtHelper: JwtHelperService,
         private readonly router: Router,
-        private readonly snackbar: MatSnackBar,
-        private readonly translation: TranslateService
+        private readonly snackbar: SnackbarService
     ) {}
 
     // TODO Implement procedure after registration/login
@@ -50,7 +49,7 @@ export class AuthService {
             tap((response) => {
                 this.storage.token = response.token;
                 this.storage.refreshToken = response.refreshToken;
-                this.showTokenRefreshInfo();
+                this.snackbar.showSnackbar('snackbar.tokenWasRefreshed');
             })
         );
     }
@@ -63,6 +62,16 @@ export class AuthService {
                 else return of(null);
             })
         );
+    }
+
+    updatePassword(data: PasswordData): void {
+        const url = `${this.storage.endpointUrl}/auth/update-password`;
+        this.http.post<TokenData>(url, data).subscribe(() => {
+            data.currentPassword = '';
+            data.newPassword = '';
+            data.confirm = '';
+            this.snackbar.showSnackbar('snackbar.passwordUpdated');
+        });
     }
 
     logout(): void {
@@ -88,11 +97,5 @@ export class AuthService {
         this.storage.refreshToken = result.authTokens.refreshToken;
         this.user$.next(result);
         this.router.navigate(['dashboard']).then();
-    }
-
-    private showTokenRefreshInfo(): void {
-        const close = this.translation.instant('general.close');
-        const refresh = this.translation.instant('snackbar.tokenWasRefreshed');
-        this.snackbar.open(refresh, close, { duration: 3000 });
     }
 }

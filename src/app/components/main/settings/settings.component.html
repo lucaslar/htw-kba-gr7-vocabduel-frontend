@@ -73,7 +73,7 @@
                         (click)="
                             storage.endpointUrl = null;
                             urlInput.value = defaultEndpoint;
-                            showSnackbar('snackbar.defaultUrlReset')
+                            snackbar.showSnackbar('snackbar.defaultUrlReset')
                         "
                     >
                         <mat-icon>refresh</mat-icon>
@@ -86,15 +86,115 @@
                         [disabled]="urlInput.value === storage.endpointUrl"
                         (click)="
                             storage.endpointUrl = urlInput.value;
-                            showSnackbar('snackbar.endpointUrlSet')
+                            snackbar.showSnackbar('snackbar.endpointUrlSet')
                         "
                     >
-                        <mat-icon>save</mat-icon>
                         {{ 'general.save' | translate }}
                     </button>
                 </div>
             </div>
         </form>
     </mat-expansion-panel>
-    <!-- TODO: Continue with user settings -->
+
+    <ng-container *ngIf="storage.token && storage.refreshToken">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="d-flex color-primary">
+                    <mat-icon class="my-auto mr-2">manage_accounts</mat-icon>
+                    <strong class="my-auto">
+                        {{ 'main.settings.userSettings' | translate }}
+                    </strong>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form>
+                <!-- TODO Implement -->
+                ...
+            </form>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="d-flex color-primary">
+                    <mat-icon class="my-auto mr-2">lock</mat-icon>
+                    <strong class="my-auto">
+                        {{ 'main.settings.accessData.title' | translate }}
+                    </strong>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form>
+                <div class="row">
+                    <mat-form-field
+                        appearance="outline"
+                        color="primary"
+                        class="col-12 col-md-6 mx-auto"
+                    >
+                        <input
+                            matInput
+                            type="password"
+                            [(ngModel)]="passwordData.currentPassword"
+                            name="currentPassword"
+                        />
+                        <mat-label>{{
+                            'main.settings.accessData.currentPassword'
+                                | translate
+                        }}</mat-label>
+                    </mat-form-field>
+                </div>
+
+                <mat-divider class="position-relative mb-3"></mat-divider>
+
+                <div class="row">
+                    <mat-form-field
+                        appearance="outline"
+                        color="primary"
+                        class="col-12 col-md-6"
+                    >
+                        <input
+                            matInput
+                            type="password"
+                            [(ngModel)]="passwordData.newPassword"
+                            name="password"
+                        />
+                        <mat-label>{{
+                            'main.settings.accessData.newPassword' | translate
+                        }}</mat-label>
+                    </mat-form-field>
+
+                    <mat-form-field
+                        appearance="outline"
+                        color="primary"
+                        class="col-12 col-md-6"
+                    >
+                        <input
+                            matInput
+                            type="password"
+                            [(ngModel)]="passwordData.confirm"
+                            name="confirmPassword"
+                        />
+                        <mat-label>
+                            {{ 'general.user.confirm' | translate }}</mat-label
+                        >
+                    </mat-form-field>
+                </div>
+
+                <div class="d-flex m-n2">
+                    <div class="ml-auto">
+                        <button
+                            mat-flat-button
+                            color="primary"
+                            class="m-2"
+                            [disabled]="
+                                !passwordData.currentPassword ||
+                                !passwordData.newPassword ||
+                                !passwordData.confirm
+                            "
+                            (click)="auth.updatePassword(passwordData)"
+                        >
+                            {{ 'general.save' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-expansion-panel>
+    </ng-container>
 </mat-accordion>

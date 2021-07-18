@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { AuthService } from '../../../services/auth.service';
 import { StorageService } from '../../../services/storage.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { TranslateService } from '@ngx-translate/core';
+import { PasswordData } from '../../../model/internal/password-data';
+import { SnackbarService } from '../../../services/snackbar.service';
 
 @Component({
     selector: 'app-settings',
@@ -13,22 +13,19 @@ import { TranslateService } from '@ngx-translate/core';
 export class SettingsComponent implements OnInit {
     readonly defaultEndpoint = environment.endpointUrl;
 
+    readonly passwordData: PasswordData = {
+        currentPassword: '',
+        newPassword: '',
+        confirm: '',
+    };
+
     constructor(
         readonly auth: AuthService,
         readonly storage: StorageService,
-        private readonly snackbar: MatSnackBar,
-        private readonly translate: TranslateService
+        readonly snackbar: SnackbarService
     ) {}
 
     ngOnInit(): void {
         this.auth.currentUser$.subscribe();
-    }
-
-    showSnackbar(messageKey: string): void {
-        this.snackbar.open(
-            this.translate.instant(messageKey),
-            this.translate.instant('general.close'),
-            { duration: 3000 }
-        );
     }
 }

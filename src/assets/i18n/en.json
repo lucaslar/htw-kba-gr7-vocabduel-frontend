@@ -16,8 +16,9 @@
     },
     "snackbar": {
         "tokenWasRefreshed": "Token has been refreshed successfully!",
-        "endpointUrlSet": "Endpoint URL has been set successfully",
-        "defaultUrlReset": "Endpoint URL has been reset to its default value"
+        "endpointUrlSet": "Endpoint URL has been set successfully!",
+        "defaultUrlReset": "Endpoint URL has been reset to its default value",
+        "passwordUpdated": "Your password has been updated successfully!"
     },
     "general": {
         "close": "Close",
@@ -57,7 +58,12 @@
                 "refreshToken": "Refresh Token"
             },
             "url": "Server URL",
-            "userSettings": "User settings",
+            "userSettings": "User data",
+            "accessData": {
+                "title": "Access data",
+                "currentPassword": "Current password",
+                "newPassword": "New password"
+            },
             "reset": {
                 "action": "Reset",
                 "tooltip": "Reset to default ({{ defaultUrl }})"
