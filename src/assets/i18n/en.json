@@ -52,7 +52,7 @@
         "settings": {
             "title": "Settings",
             "authTokens": {
-                "info": "If you want to access the API, you can use your auth tokens. But beware of their expiration time. Your access token has to be refreshed after 5 minutes - in this client, this is done automatically.",
+                "info": "If you want to access the API, you can use your auth tokens. But beware of their expiration time. Your access token has to be refreshed every 5 minutes - in this client, this is done automatically.",
                 "accessToken": "Access Token",
                 "refreshToken": "Refresh Token"
             },
