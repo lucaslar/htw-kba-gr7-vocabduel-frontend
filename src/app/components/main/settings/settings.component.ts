@@ -4,6 +4,8 @@ import { AuthService } from '../../../services/auth.service';
 import { StorageService } from '../../../services/storage.service';
 import { PasswordData } from '../../../model/internal/password-data';
 import { SnackbarService } from '../../../services/snackbar.service';
+import { UserService } from '../../../services/user.service';
+import { LoggedInUser } from '../../../model/logged-in-user';
 
 @Component({
     selector: 'app-settings',
@@ -19,13 +21,18 @@ export class SettingsComponent implements OnInit {
         confirm: '',
     };
 
+    currentUser?: LoggedInUser;
+
     constructor(
         readonly auth: AuthService,
+        readonly user: UserService,
         readonly storage: StorageService,
         readonly snackbar: SnackbarService
     ) {}
 
     ngOnInit(): void {
-        this.auth.currentUser$.subscribe();
+        this.auth.currentUser$.subscribe((user) => {
+            if (user) this.currentUser = user;
+        });
     }
 }

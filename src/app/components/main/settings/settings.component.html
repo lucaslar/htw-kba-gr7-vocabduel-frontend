@@ -96,7 +96,7 @@
         </form>
     </mat-expansion-panel>
 
-    <ng-container *ngIf="storage.token && storage.refreshToken">
+    <ng-container *ngIf="currentUser">
         <mat-expansion-panel>
             <mat-expansion-panel-header>
                 <mat-panel-title class="d-flex color-primary">
@@ -191,6 +191,62 @@
                             (click)="auth.updatePassword(passwordData)"
                         >
                             {{ 'general.save' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title class="d-flex color-warn">
+                    <mat-icon class="my-auto mr-2">error_outline</mat-icon>
+                    <strong class="my-auto">
+                        {{ 'main.settings.deleteAccount.title' | translate }}
+                    </strong>
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                {{
+                    'main.settings.deleteAccount.infoText'
+                        | translate: currentUser
+                }}
+            </p>
+            <p>
+                <strong>{{ 'general.note' | translate }}:</strong>
+                {{
+                    'main.settings.deleteAccount.noteVocableLists'
+                        | translate: currentUser
+                }}
+            </p>
+
+            <form>
+                <mat-form-field
+                    appearance="outline"
+                    color="warn"
+                    class="w-100"
+                >
+                    <input
+                        #deleteConfirmInput
+                        matInput
+                        name="username"
+                    />
+                    <mat-label>
+                        {{ 'general.user.username' | translate }}
+                    </mat-label>
+                </mat-form-field>
+                <div class="d-flex">
+                    <div class="ml-auto">
+                        <button
+                            mat-flat-button
+                            color="warn"
+                            (click)="user.deleteAccount(currentUser)"
+                            [disabled]="
+                                deleteConfirmInput.value !==
+                                currentUser.username
+                            "
+                        >
+                            {{ 'general.delete' | translate }}
                         </button>
                     </div>
                 </div>

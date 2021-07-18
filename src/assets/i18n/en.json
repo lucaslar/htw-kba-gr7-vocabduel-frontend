@@ -17,13 +17,16 @@
     "snackbar": {
         "tokenWasRefreshed": "Token has been refreshed successfully!",
         "endpointUrlSet": "Endpoint URL has been set successfully!",
-        "defaultUrlReset": "Endpoint URL has been reset to its default value",
-        "passwordUpdated": "Your password has been updated successfully!"
+        "defaultUrlReset": "Endpoint URL has been reset to its default value!",
+        "passwordUpdated": "Your password has been updated successfully!",
+        "accountDeleted": "Goodbye {{ firstName }}! Your account has been deleted successfully!"
     },
     "general": {
         "close": "Close",
         "save": "Save",
         "proTip": "Pro tip",
+        "note": "Note",
+        "delete": "Delete",
         "user": {
             "username": "Username",
             "firstName": "First name",
@@ -67,6 +70,11 @@
             "reset": {
                 "action": "Reset",
                 "tooltip": "Reset to default ({{ defaultUrl }})"
+            },
+            "deleteAccount": {
+                "title": "Delete account",
+                "infoText": "{{ firstName }}, we would really miss you and want to make sure you know what you are doing. Please confirm deleting your account by entering your username ({{ username }}) and confirming.",
+                "noteVocableLists": "If you have imported any lists, we would love to keep your input. However, you can remove them manually before deleting your account if you don't want to share them. All running games will be quit."
             }
         }
     }
