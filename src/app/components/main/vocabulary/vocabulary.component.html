@@ -1,0 +1,34 @@
+<div class="mb-3 d-flex">
+    <mat-icon class="flex-grow-0 mr-2 my-auto"> school </mat-icon>
+    <h1 class="flex-grow-1 my-auto" appEllipsisTooltip>
+        {{ 'header.actions.vocabulary' | translate }}
+    </h1>
+</div>
+
+<mat-card *ngIf="languages$ | async as supported">
+    <mat-card-title>Supported languages</mat-card-title>
+    <mat-card-content>
+        <p class="my-3">{{ 'main.vocabulary.supported.info' | translate }}</p>
+        <p class="mb-3">
+            <strong class="color-primary">
+                {{ 'general.note' | translate }}:
+            </strong>
+            {{ 'main.vocabulary.supported.flagsDisclaimer' | translate }}
+        </p>
+        <div class="row m-n2">
+            <div class="lang m-2 p-2" *ngFor="let lang of supported" (click)="onReferenceClicked(lang)">
+                <div
+                    class="mat-elevation-z5 flag-icon-background mx-auto flag-icon-squared {{
+                        lang | flagForLang
+                    }}"
+                ></div>
+                <div class="text-center mt-2">
+                    <strong>{{
+                        'general.language.' + lang | lowercase | translate
+                    }}</strong>
+                    ({{ lang }})
+                </div>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

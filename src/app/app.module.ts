@@ -26,6 +26,9 @@ import { AuthInterceptor } from './helpers/auth-interceptor';
 import { SettingsComponent } from './components/main/settings/settings.component';
 import { PersonSearchComponent } from './components/shared/person-search/person-search.component';
 import { PersonSearchPageComponent } from './components/main/person-search-page/person-search-page.component';
+import { VocabularyComponent } from './components/main/vocabulary/vocabulary.component';
+import { FlagForLangPipe } from './pipes/flag-for-lang.pipe';
+import { LanguageReferencesComponent } from './components/dialogs/language-references/language-references.component';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,6 +47,9 @@ const HttpLoaderFactory = (http: HttpClient) => {
         SettingsComponent,
         PersonSearchComponent,
         PersonSearchPageComponent,
+        VocabularyComponent,
+        FlagForLangPipe,
+        LanguageReferencesComponent,
     ],
     imports: [
         BrowserModule,

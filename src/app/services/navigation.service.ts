@@ -13,6 +13,12 @@ export class NavigationService {
 
     private readonly sharedNavItems = [
         {
+            icon: 'school',
+            translationKey: 'header.actions.vocabulary',
+            colorClass: 'color-primary',
+            onClick: async () => this.navigateAndClose('vocabulary'),
+        },
+        {
             icon: 'person_search',
             translationKey: 'header.actions.searchPerson',
             colorClass: 'color-primary',

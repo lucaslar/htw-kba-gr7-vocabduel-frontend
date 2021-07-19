@@ -7,6 +7,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { UnauthorizedGuard } from './guards/unauthorized.guard';
 import { SettingsComponent } from './components/main/settings/settings.component';
 import { PersonSearchPageComponent } from './components/main/person-search-page/person-search-page.component';
+import { VocabularyComponent } from './components/main/vocabulary/vocabulary.component';
 
 const routes: Routes = [
     {
@@ -25,6 +26,7 @@ const routes: Routes = [
         canActivate: [AuthGuard],
     },
     { path: 'settings', component: SettingsComponent },
+    { path: 'vocabulary', component: VocabularyComponent },
     { path: 'user-search', component: PersonSearchPageComponent },
     { path: '**', redirectTo: 'dashboard' },
 ];

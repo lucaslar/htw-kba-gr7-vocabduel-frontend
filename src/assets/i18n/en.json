@@ -7,7 +7,8 @@
             "language": "Language selection",
             "searchPerson": "User search",
             "logout": "Logout",
-            "login": "Login"
+            "login": "Login",
+            "vocabulary": "Vocabulary"
         }
     },
     "dialog": {
@@ -15,6 +16,10 @@
             "title": "Oops, something happened...",
             "message": "The following error occurred:",
             "adjustEndpointHint": "Even if not logged in, you can configure the API endpoint URL in this application's settings."
+        },
+        "languageReferences": {
+            "title": "References for: {{ lang }}",
+            "description": "When importing a vocabulary list, {{ lang }} can be referenced by (case insensitive):"
         }
     },
     "snackbar": {
@@ -50,7 +55,21 @@
             "personalData": "Personal data",
             "accessData": "Access data"
         },
-        "itsYou": "It's you!"
+        "itsYou": "It's you!",
+        "language": {
+            "ar": "Arabic",
+            "cmn": "Mandarin",
+            "de": "German",
+            "en": "English",
+            "es": "Spanish",
+            "fr": "French",
+            "hi": "Hindi",
+            "it": "Italian",
+            "ja": "Japanese",
+            "ko": "Korean",
+            "pt": "Portuguese",
+            "ru": "Russian"
+        }
     },
     "main": {
         "registration": {
@@ -91,6 +110,12 @@
                 "noScoresInfo": "You have to be logged in in order to see user scores. By clicking on a player, you will only be able to see the vocabulary lists contributed by this user."
             },
             "loggedIn": "Search for other players here. Select a player in order to get information about vocabulary lists contributed by this user and her/his game scores."
+        },
+        "vocabulary": {
+            "supported": {
+                "info": "The following languages are supported by Vocabduel. Click on a language to see how it can be referenced when importing vocabulary.",
+                "flagsDisclaimer": "The displayed flags might only represent one country the respective language is spoken in"
+            }
         }
     }
 }
