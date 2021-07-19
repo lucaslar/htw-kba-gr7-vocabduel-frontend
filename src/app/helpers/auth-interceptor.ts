@@ -33,11 +33,6 @@ export class AuthInterceptor implements HttpInterceptor {
                     return this.storage.refreshToken && token
                         ? this.refreshToken$(req, next)
                         : this.logoutAndThrow(err);
-                } else if (
-                    err instanceof HttpErrorResponse &&
-                    err.status === 403
-                ) {
-                    return this.logoutAndThrow(err);
                 } else return throwError(err);
             })
         );
@@ -74,6 +69,12 @@ export class AuthInterceptor implements HttpInterceptor {
                     return next.handle(
                         this.appendAuthHeader(request, res.token)
                     );
+                }),
+                catchError((err) => {
+                    return err instanceof HttpErrorResponse &&
+                        err.status === 403
+                        ? this.logoutAndThrow(err)
+                        : throwError(err);
                 })
             );
         } else {
