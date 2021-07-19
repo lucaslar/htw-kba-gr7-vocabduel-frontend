@@ -122,7 +122,8 @@
                 "flagsDisclaimer": "The displayed flags might only represent one country the respective language is spoken in"
             },
             "sets": {
-                "title": "Available vocabulary lists"
+                "title": "Available vocabulary",
+                "none": "No vocabulary yet. Be the one to change that by importing a GNU file!"
             }
         }
     }
