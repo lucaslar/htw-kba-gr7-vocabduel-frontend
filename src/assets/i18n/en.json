@@ -28,7 +28,9 @@
         "defaultUrlReset": "Endpoint URL has been reset to its default value!",
         "passwordUpdated": "Your password has been updated successfully!",
         "accountDeleted": "Goodbye {{ firstName }}! Your account has been deleted successfully!",
-        "userUpdated": "User account has been updated successfully, {{ firstName }}!"
+        "userUpdated": "User account has been updated successfully, {{ firstName }}!",
+        "fileNotAccepted": "File not accepted - must be .txt!",
+        "thanksForImport": "File has been imported successfully. Thanks for your contribution, {{ firstName }}!"
     },
     "general": {
         "close": "Close",
@@ -124,6 +126,11 @@
             "sets": {
                 "title": "Available vocabulary",
                 "none": "No vocabulary yet. Be the one to change that by importing a GNU file!"
+            },
+            "import": {
+                "title": "Import a file",
+                "action": "Click here or drop a GNU file",
+                "contribute": "Contribute"
             }
         }
     }

@@ -29,6 +29,7 @@ import { PersonSearchPageComponent } from './components/main/person-search-page/
 import { VocabularyComponent } from './components/main/vocabulary/vocabulary.component';
 import { FlagForLangPipe } from './pipes/flag-for-lang.pipe';
 import { LanguageReferencesComponent } from './components/dialogs/language-references/language-references.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -65,6 +66,7 @@ const HttpLoaderFactory = (http: HttpClient) => {
         }),
         MaterialModule,
         FormsModule,
+        NgxDropzoneModule,
     ],
     providers: [
         {

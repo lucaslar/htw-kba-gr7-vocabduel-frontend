@@ -28,4 +28,9 @@ export class VocabularyService {
         const url = `${this.storage.endpointUrl}/vocabulary/language-sets`;
         return this.http.get<LanguageSet[]>(url);
     }
+
+    importGnuFile$(data: string) {
+        const url = `${this.storage.endpointUrl}/vocabulary/import-gnu`;
+        return this.http.post<LanguageSet[]>(url, data);
+    }
 }
