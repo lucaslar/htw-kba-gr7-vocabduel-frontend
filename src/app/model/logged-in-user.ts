@@ -1,10 +1,6 @@
 import { TokenData } from './token-data';
+import { User } from './internal/user';
 
-export class LoggedInUser {
+export class LoggedInUser extends User {
     readonly authTokens!: TokenData;
-    readonly email!: string;
-    readonly firstName!: string;
-    readonly id!: number;
-    readonly lastName!: string;
-    readonly username!: string;
 }

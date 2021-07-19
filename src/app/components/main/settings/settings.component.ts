@@ -5,7 +5,7 @@ import { StorageService } from '../../../services/storage.service';
 import { PasswordData } from '../../../model/internal/password-data';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { UserService } from '../../../services/user.service';
-import { LoggedInUser } from '../../../model/logged-in-user';
+import { User } from '../../../model/internal/user';
 
 @Component({
     selector: 'app-settings',
@@ -21,7 +21,8 @@ export class SettingsComponent implements OnInit {
         confirm: '',
     };
 
-    currentUser?: LoggedInUser;
+    userData!: User;
+    currentUser?: User;
 
     constructor(
         readonly auth: AuthService,
@@ -32,7 +33,23 @@ export class SettingsComponent implements OnInit {
 
     ngOnInit(): void {
         this.auth.currentUser$.subscribe((user) => {
-            if (user) this.currentUser = user;
+            if (user) {
+                const { authTokens, ...userData } = user;
+                this.bothUserData = userData;
+            }
         });
+    }
+
+    updateUserData(): void {
+        this.user.updateAccount$(this.userData).subscribe((user) => {
+            this.bothUserData = user;
+            console.log(user);
+            this.snackbar.showSnackbar('snackbar.userUpdated', user);
+        });
+    }
+
+    set bothUserData(user: User) {
+        this.userData = Object.assign({}, user);
+        this.currentUser = Object.assign({}, user);
     }
 }

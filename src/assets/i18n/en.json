@@ -20,13 +20,15 @@
         "endpointUrlSet": "Endpoint URL has been set successfully!",
         "defaultUrlReset": "Endpoint URL has been reset to its default value!",
         "passwordUpdated": "Your password has been updated successfully!",
-        "accountDeleted": "Goodbye {{ firstName }}! Your account has been deleted successfully!"
+        "accountDeleted": "Goodbye {{ firstName }}! Your account has been deleted successfully!",
+        "userUpdated": "User account has been updated successfully, {{ firstName }}!"
     },
     "general": {
         "close": "Close",
         "save": "Save",
         "proTip": "Pro tip",
         "note": "Note",
+        "update": "Update",
         "delete": "Delete",
         "user": {
             "username": "Username",

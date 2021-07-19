@@ -3,7 +3,8 @@ import { SnackbarService } from './snackbar.service';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { StorageService } from './storage.service';
-import { LoggedInUser } from '../model/logged-in-user';
+import { User } from '../model/internal/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root',
@@ -16,12 +17,19 @@ export class UserService {
         private readonly snackbar: SnackbarService
     ) {}
 
-    deleteAccount(user: LoggedInUser): void {
+    deleteAccount(user: User): void {
         this.http
             .delete(`${this.storage.endpointUrl}/user/delete-account`)
             .subscribe(() => {
                 this.auth.logout();
                 this.snackbar.showSnackbar('snackbar.accountDeleted', user);
             });
+    }
+
+    updateAccount$(user: User): Observable<User> {
+        return this.http.put<User>(
+            `${this.storage.endpointUrl}/user/update-account`,
+            user
+        );
     }
 }

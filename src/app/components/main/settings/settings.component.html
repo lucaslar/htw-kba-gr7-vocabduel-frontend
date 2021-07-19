@@ -5,7 +5,7 @@
     </h1>
 </div>
 
-<mat-card class="mb-3 p-4" *ngIf="storage.refreshToken && storage.token">
+<mat-card class="mb-3 p-4" *ngIf="currentUser">
     <mat-card-content>
         <strong class="color-primary">
             {{ 'general.proTip' | translate }}:
@@ -107,8 +107,105 @@
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <form>
-                <!-- TODO Implement -->
-                ...
+                <div class="row">
+                    <mat-form-field
+                        appearance="outline"
+                        color="primary"
+                        class="col-12 col-md-6 col-lg-4 col-xl-3"
+                    >
+                        <input
+                            matInput
+                            [(ngModel)]="userData.username"
+                            name="username"
+                        />
+                        <mat-label>{{
+                            'general.user.username' | translate
+                        }}</mat-label>
+                    </mat-form-field>
+
+                    <mat-form-field
+                        appearance="outline"
+                        color="primary"
+                        class="col-12 col-md-6 col-lg-4 col-xl-3"
+                    >
+                        <input
+                            matInput
+                            [(ngModel)]="userData.email"
+                            name="email"
+                        />
+                        <mat-label>{{
+                            'general.user.email' | translate
+                        }}</mat-label>
+                    </mat-form-field>
+
+                    <mat-form-field
+                        appearance="outline"
+                        color="primary"
+                        class="col-12 col-md-6 col-lg-4 col-xl-3"
+                    >
+                        <input
+                            matInput
+                            [(ngModel)]="userData.firstName"
+                            name="firstName"
+                        />
+                        <mat-label>{{
+                            'general.user.firstName' | translate
+                        }}</mat-label>
+                    </mat-form-field>
+
+                    <mat-form-field
+                        appearance="outline"
+                        color="primary"
+                        class="col-12 col-md-6 col-lg-4 col-xl-3"
+                    >
+                        <input
+                            matInput
+                            [(ngModel)]="userData.lastName"
+                            name="lastName"
+                        />
+                        <mat-label>{{
+                            'general.user.lastName' | translate
+                        }}</mat-label>
+                    </mat-form-field>
+                </div>
+                <div class="d-flex m-n2">
+                    <div class="ml-auto">
+                        <button
+                            type="button"
+                            class="m-2"
+                            mat-flat-button
+                            [disabled]="
+                                currentUser.username === userData.username &&
+                                currentUser.email === userData.email &&
+                                currentUser.firstName === userData.firstName &&
+                                currentUser.lastName === userData.lastName
+                            "
+                            (click)="bothUserData = currentUser"
+                        >
+                            <mat-icon>refresh</mat-icon>
+                            {{ 'main.settings.reset.action' | translate }}
+                        </button>
+                        <button
+                            mat-flat-button
+                            color="primary"
+                            class="m-2"
+                            [disabled]="
+                                !userData.username ||
+                                !userData.email ||
+                                !userData.email ||
+                                !userData.lastName ||
+                                (currentUser.username === userData.username &&
+                                    currentUser.email === userData.email &&
+                                    currentUser.firstName ===
+                                        userData.firstName &&
+                                    currentUser.lastName === userData.lastName)
+                            "
+                            (click)="updateUserData()"
+                        >
+                            {{ 'general.update' | translate }}
+                        </button>
+                    </div>
+                </div>
             </form>
         </mat-expansion-panel>
 
@@ -177,12 +274,11 @@
                     </mat-form-field>
                 </div>
 
-                <div class="d-flex m-n2">
+                <div class="d-flex">
                     <div class="ml-auto">
                         <button
                             mat-flat-button
                             color="primary"
-                            class="m-2"
                             [disabled]="
                                 !passwordData.currentPassword ||
                                 !passwordData.newPassword ||
@@ -221,16 +317,8 @@
             </p>
 
             <form>
-                <mat-form-field
-                    appearance="outline"
-                    color="warn"
-                    class="w-100"
-                >
-                    <input
-                        #deleteConfirmInput
-                        matInput
-                        name="username"
-                    />
+                <mat-form-field appearance="outline" color="warn" class="w-100">
+                    <input #deleteConfirmInput matInput name="username" />
                     <mat-label>
                         {{ 'general.user.username' | translate }}
                     </mat-label>
