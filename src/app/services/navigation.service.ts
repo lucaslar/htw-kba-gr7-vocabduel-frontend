@@ -18,6 +18,12 @@ export class NavigationService {
             onClick: async () => this.navigateAndClose('dashboard'),
         },
         {
+            icon: 'person_search',
+            translationKey: 'header.searchPerson',
+            colorClass: 'color-primary',
+            onClick: async () => this.navigateAndClose('user-search'),
+        },
+        {
             icon: 'settings',
             translationKey: 'header.actions.settings',
             colorClass: 'color-primary',
@@ -27,7 +33,7 @@ export class NavigationService {
             icon: 'language',
             translationKey: 'header.actions.language',
             colorClass: 'color-primary',
-            onClick: () => console.log('to be implemented'),
+            onClick: () => console.log('to be implemented'), // TODO implement
         },
         {
             icon: 'power_settings_new',

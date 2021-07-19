@@ -24,6 +24,8 @@ import { JWT_OPTIONS, JwtHelperService } from '@auth0/angular-jwt';
 import { FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './helpers/auth-interceptor';
 import { SettingsComponent } from './components/main/settings/settings.component';
+import { PersonSearchComponent } from './components/shared/person-search/person-search.component';
+import { PersonSearchPageComponent } from './components/main/person-search-page/person-search-page.component';
 
 const HttpLoaderFactory = (http: HttpClient) => {
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -40,6 +42,8 @@ const HttpLoaderFactory = (http: HttpClient) => {
         LoginComponent,
         RegistrationComponent,
         SettingsComponent,
+        PersonSearchComponent,
+        PersonSearchPageComponent,
     ],
     imports: [
         BrowserModule,

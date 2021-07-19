@@ -32,4 +32,10 @@ export class UserService {
             user
         );
     }
+
+    findUsers$(searchStr: string): Observable<User[]> {
+        return this.http.get<User[]>(`${this.storage.endpointUrl}/user/find`, {
+            params: { searchStr },
+        });
+    }
 }

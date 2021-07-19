@@ -1,0 +1,79 @@
+<div class="d-flex flex-column h-100">
+    <form class="flex-grow-0">
+        <mat-form-field appearance="outline" color="primary" class="w-100">
+            <input matInput [(ngModel)]="searchStr" name="username" />
+            <mat-label>
+                {{ 'general.user.username' | translate }}
+            </mat-label>
+            <button
+                mat-icon-button
+                color="primary"
+                matSuffix
+                [disabled]="
+                    !navigation.isLoadingIndicated && !searchStr.trim()
+                "
+                (click)="
+                    results$ = user.findUsers$(searchStr);
+                    lastEmittedStr = searchStr
+                "
+            >
+                <mat-icon> search </mat-icon>
+            </button>
+        </mat-form-field>
+    </form>
+    <div class="flex-grow-1">
+        <ng-container *ngIf="lastEmittedStr !== undefined; else noSearchYet">
+            <ng-container *ngIf="results$ | async as results; else searching">
+                <ng-container *ngIf="results.length; else noResultsForStr">
+                    <h2>
+                        {{
+                            'general.results.forStr'
+                                | translate: { str: lastEmittedStr }
+                        }}:
+                    </h2>
+                    <pre>{{ results | json }}</pre>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #searching>
+    <div class="d-flex h-100">
+        <div class="m-auto d-flex flex-column p-2">
+            <mat-spinner class="mx-auto"></mat-spinner>
+            <div class="mt-2 mx-auto">
+                {{ 'general.results.searching' | translate }}
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #noResultsForStr>
+    <div class="d-flex h-100">
+        <div class="m-auto d-flex flex-column p-2">
+            <mat-icon class="prominent-icon mx-auto">
+                sentiment_very_dissatisfied
+            </mat-icon>
+            <div class="mt-2 mx-auto">
+                <strong>
+                    {{
+                        'general.results.none'
+                            | translate: { str: lastEmittedStr }
+                    }}
+                </strong>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #noSearchYet>
+    <div class="d-flex h-100">
+        <div class="m-auto d-flex flex-column p-2 color-darkgrey">
+            <mat-icon class="prominent-icon mx-auto"> find_in_page </mat-icon>
+            <div class="mt-2 mx-auto">
+                {{ 'general.results.noSearchYet' | translate }}
+            </div>
+        </div>
+    </div>
+</ng-template>

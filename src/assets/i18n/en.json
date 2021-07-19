@@ -37,6 +37,12 @@
             "email": "Email",
             "password": "Password",
             "confirm": "Confirm password"
+        },
+        "results": {
+            "searching": "Searching...",
+            "noSearchYet": "No search yet",
+            "forStr": "Search results for \"{{ str }}\"",
+            "none": "No search results for \"{{ str }}\""
         }
     },
     "main": {
