@@ -29,8 +29,8 @@ export class VocabularyService {
         return this.http.get<LanguageSet[]>(url);
     }
 
-    importGnuFile$(data: string) {
+    importGnuFile$(data: string): Observable<void> {
         const url = `${this.storage.endpointUrl}/vocabulary/import-gnu`;
-        return this.http.post<LanguageSet[]>(url, data);
+        return this.http.post<void>(url, data);
     }
 }
