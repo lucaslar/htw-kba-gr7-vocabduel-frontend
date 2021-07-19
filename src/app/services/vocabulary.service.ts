@@ -26,11 +26,34 @@ export class VocabularyService {
 
     get languageSets$(): Observable<LanguageSet[]> {
         const url = `${this.storage.endpointUrl}/vocabulary/language-sets`;
-        return this.http.get<LanguageSet[]>(url);
+        return this.http.get<LanguageSet[]>(url).pipe(
+            tap((sets) => {
+                sets.forEach((ls) => {
+                    ls.vocableUnits.sort(VocabularyService.sortByTitle);
+                    ls.vocableUnits.forEach((u) => {
+                        u.vocableLists.sort(VocabularyService.sortByTitle);
+                    });
+                });
+
+                return sets.sort((a, b) => {
+                    return a.knownLanguage + a.learntLanguage <
+                        b.knownLanguage + b.learntLanguage
+                        ? -1
+                        : 1;
+                });
+            })
+        );
     }
 
     importGnuFile$(data: string): Observable<void> {
         const url = `${this.storage.endpointUrl}/vocabulary/import-gnu`;
         return this.http.post<void>(url, data);
+    }
+
+    private static sortByTitle(
+        a: { title: string },
+        b: { title: string }
+    ): number {
+        return a.title.toLowerCase() < b.title.toLowerCase() ? -1 : 1;
     }
 }
