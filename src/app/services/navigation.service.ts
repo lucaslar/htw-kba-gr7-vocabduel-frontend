@@ -19,7 +19,7 @@ export class NavigationService {
         },
         {
             icon: 'person_search',
-            translationKey: 'header.searchPerson',
+            translationKey: 'header.actions.searchPerson',
             colorClass: 'color-primary',
             onClick: async () => this.navigateAndClose('user-search'),
         },

@@ -5,6 +5,7 @@
             "home": "Dashboard",
             "settings": "Settings",
             "language": "Language selection",
+            "searchPerson": "User search",
             "logout": "Logout"
         }
     },
@@ -43,16 +44,16 @@
             "noSearchYet": "No search yet",
             "forStr": "Search results for \"{{ str }}\"",
             "none": "No search results for \"{{ str }}\""
+        },
+        "userDataSection": {
+            "personalData": "Personal data",
+            "accessData": "Access data"
         }
     },
     "main": {
         "registration": {
             "title": "Registration",
             "subtitle": "Create an account and start playing, contributing and learning!",
-            "section": {
-                "personalData": "Personal data",
-                "security": "Security"
-            },
             "register": "Register",
             "orSignIn": "Already have an account? Sign in"
         },
@@ -63,16 +64,13 @@
             "orSignUp": "Don't have an account yet? Sign up"
         },
         "settings": {
-            "title": "Settings",
             "authTokens": {
                 "info": "If you want to access the API, you can use your auth tokens. But beware of their expiration time. Your access token has to be refreshed every 5 minutes - in this client, this is done automatically.",
                 "accessToken": "Access Token",
                 "refreshToken": "Refresh Token"
             },
             "url": "Server URL",
-            "userSettings": "User data",
             "accessData": {
-                "title": "Access data",
                 "currentPassword": "Current password",
                 "newPassword": "New password"
             },
