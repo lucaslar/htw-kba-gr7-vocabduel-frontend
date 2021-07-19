@@ -19,7 +19,7 @@
         },
         "languageReferences": {
             "title": "References for: {{ lang }}",
-            "description": "When importing a vocabulary list, {{ lang }} can be referenced by (case insensitive):"
+            "description": "When importing a vocabulary list, {{ lang }} can be referred to as (case insensitive):"
         }
     },
     "snackbar": {
@@ -120,8 +120,8 @@
         "vocabulary": {
             "supported": {
                 "title": "Supported languages",
-                "info": "The following languages are supported by Vocabduel. Click on a language to see how it can be referenced when importing vocabulary.",
-                "flagsDisclaimer": "The displayed flags might only represent one country the respective language is spoken in"
+                "info": "The following languages are supported by Vocabduel. Click on a language to see how it can be referred to when importing vocabulary.",
+                "flagsDisclaimer": "The displayed flags might only represent one country the respective language is spoken in."
             },
             "sets": {
                 "title": "Available vocabulary",
