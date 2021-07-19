@@ -5,6 +5,7 @@ import { VocabularyService } from '../../../services/vocabulary.service';
 import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { LanguageReferencesComponent } from '../../dialogs/language-references/language-references.component';
+import { LanguageSet } from '../../../model/language-set';
 
 @Component({
     selector: 'app-vocabulary',
@@ -14,6 +15,7 @@ import { LanguageReferencesComponent } from '../../dialogs/language-references/l
 export class VocabularyComponent {
     currentUser$?: Observable<User | null>;
     languages$?: Observable<string[]>;
+    languageSets$?: Observable<LanguageSet[]>;
 
     constructor(
         private readonly vocabulary: VocabularyService,
@@ -24,6 +26,7 @@ export class VocabularyComponent {
     ngOnInit(): void {
         this.currentUser$ = this.auth.currentUser$;
         this.languages$ = this.vocabulary.supportedLanguages$;
+        this.languageSets$ = this.vocabulary.languageSets$;
     }
 
     onReferenceClicked(lang: string): void {

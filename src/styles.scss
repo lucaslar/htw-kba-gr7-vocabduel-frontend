@@ -44,3 +44,7 @@ body {
     background-color: #3f51b5;
     color: white;
 }
+
+.no-padding-body .mat-expansion-panel-body {
+    padding: 0 !important;
+}

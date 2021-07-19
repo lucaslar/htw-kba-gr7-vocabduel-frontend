@@ -1,3 +1,13 @@
+.flag-icon-background {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+
+    &.overlapping {
+        z-index: 10;
+    }
+}
+
 .lang {
     transition: 0.3s;
     cursor: pointer;
@@ -14,4 +24,8 @@
         color: #3f51b5;
         border-color: #3f51b5;
     }
+}
+
+mat-panel-title {
+    min-height: 48px !important;
 }

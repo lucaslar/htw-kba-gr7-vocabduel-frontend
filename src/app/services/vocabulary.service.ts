@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from './storage.service';
 import { tap } from 'rxjs/operators';
+import { LanguageSet } from '../model/language-set';
 
 @Injectable({
     providedIn: 'root',
@@ -21,5 +22,10 @@ export class VocabularyService {
     referencesFor$(lang: string): Observable<string[]> {
         const url = `${this.storage.endpointUrl}/vocabulary/language-references/${lang}`;
         return this.http.get<string[]>(url).pipe(tap((langs) => langs.sort()));
+    }
+
+    get languageSets$(): Observable<LanguageSet[]> {
+        const url = `${this.storage.endpointUrl}/vocabulary/language-sets`;
+        return this.http.get<LanguageSet[]>(url);
     }
 }
