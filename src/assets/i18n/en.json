@@ -48,7 +48,8 @@
         "userDataSection": {
             "personalData": "Personal data",
             "accessData": "Access data"
-        }
+        },
+        "itsYou": "It's you!"
     },
     "main": {
         "registration": {
@@ -83,6 +84,13 @@
                 "infoText": "{{ firstName }}, we would really miss you and want to make sure you know what you are doing. Please confirm deleting your account by entering your username ({{ username }}) and confirming.",
                 "noteVocableLists": "If you have imported any lists, we would love to keep your input. However, you can remove them manually before deleting your account if you don't want to share them. All running games will be quit."
             }
+        },
+        "personSearch": {
+            "loggedOut": {
+                "intro": "Interested in who already signed up? Search for Vocabduel users here...",
+                "noScoresInfo": "You have to be logged in in order to see user scores. By clicking on a player, you will only be able to see the vocabulary lists contributed by this user."
+            },
+            "loggedIn": "Search for other players here. Select a player in order to get information about vocabulary lists contributed by this user and her/his game scores."
         }
     }
 }

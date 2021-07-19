@@ -17,4 +17,9 @@ export class PersonSearchPageComponent implements OnInit {
             if (user) this.currentUser = user;
         });
     }
+
+    displayUserDetails(user: User): void {
+        // TODO Implement
+        console.log(user);
+    }
 }

@@ -9,9 +9,7 @@
                 mat-icon-button
                 color="primary"
                 matSuffix
-                [disabled]="
-                    !navigation.isLoadingIndicated && !searchStr.trim()
-                "
+                [disabled]="!navigation.isLoadingIndicated && !searchStr.trim()"
                 (click)="
                     results$ = user.findUsers$(searchStr);
                     lastEmittedStr = searchStr
@@ -31,7 +29,42 @@
                                 | translate: { str: lastEmittedStr }
                         }}:
                     </h2>
-                    <pre>{{ results | json }}</pre>
+                    <div class="row m-n2">
+                        <div
+                            class="p-2 col-12 col-md-6 col-xl-4"
+                            *ngFor="let foundUser of results"
+                        >
+                            <mat-card
+                                (click)="userSelected.emit(foundUser)"
+                                class="d-flex"
+                            >
+                                <mat-icon
+                                    [color]="
+                                        ownId === foundUser.id
+                                            ? 'accent'
+                                            : 'primary'
+                                    "
+                                    class="my-auto mr-3 prominent-icon"
+                                >
+                                    person
+                                </mat-icon>
+                                <div class="my-auto">
+                                    <strong>
+                                        {{ foundUser.username }}
+                                        <span
+                                            *ngIf="foundUser.id === ownId"
+                                            class="color-accent"
+                                        >
+                                            ({{ 'general.itsYou' | translate }})
+                                        </span>
+                                    </strong>
+                                    <br />
+                                    {{ foundUser.firstName }}
+                                    {{ foundUser.lastName }}
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
                 </ng-container>
             </ng-container>
         </ng-container>
