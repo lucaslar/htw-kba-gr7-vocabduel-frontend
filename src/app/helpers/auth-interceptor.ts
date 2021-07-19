@@ -9,7 +9,8 @@ import {
 import { StorageService } from '../services/storage.service';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { AuthService } from '../services/auth.service';
-import { catchError, filter, switchMap, take } from 'rxjs/operators';
+import { catchError, filter, finalize, switchMap, take } from 'rxjs/operators';
+import { NavigationService } from '../services/navigation.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -19,7 +20,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(
         private readonly storage: StorageService,
-        private readonly auth: AuthService
+        private readonly auth: AuthService,
+        private readonly navigation: NavigationService
     ) {}
 
     intercept(
@@ -27,7 +29,9 @@ export class AuthInterceptor implements HttpInterceptor {
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
         const token = this.storage.token;
+        this.navigation.isLoadingIndicated = true;
         return next.handle(this.appendAuthHeader(req, token)).pipe(
+            finalize(() => (this.navigation.isLoadingIndicated = false)),
             catchError((err) => {
                 if (err instanceof HttpErrorResponse && err.status === 401) {
                     return this.storage.refreshToken && token

@@ -69,7 +69,10 @@
                             'main.settings.reset.tooltip'
                                 | translate: { defaultUrl: defaultEndpoint }
                         "
-                        [disabled]="storage.endpointUrl === defaultEndpoint"
+                        [disabled]="
+                            navigation.isLoadingIndicated ||
+                            storage.endpointUrl === defaultEndpoint
+                        "
                         (click)="
                             storage.endpointUrl = null;
                             urlInput.value = defaultEndpoint;
@@ -83,7 +86,10 @@
                         mat-flat-button
                         color="primary"
                         class="m-2"
-                        [disabled]="urlInput.value === storage.endpointUrl"
+                        [disabled]="
+                            navigation.isLoadingIndicated ||
+                            urlInput.value === storage.endpointUrl
+                        "
                         (click)="
                             storage.endpointUrl = urlInput.value;
                             snackbar.showSnackbar('snackbar.endpointUrlSet')
@@ -175,10 +181,12 @@
                             class="m-2"
                             mat-flat-button
                             [disabled]="
-                                currentUser.username === userData.username &&
-                                currentUser.email === userData.email &&
-                                currentUser.firstName === userData.firstName &&
-                                currentUser.lastName === userData.lastName
+                                navigation.isLoadingIndicated ||
+                                (currentUser.username === userData.username &&
+                                    currentUser.email === userData.email &&
+                                    currentUser.firstName ===
+                                        userData.firstName &&
+                                    currentUser.lastName === userData.lastName)
                             "
                             (click)="bothUserData = currentUser"
                         >
@@ -190,6 +198,7 @@
                             color="primary"
                             class="m-2"
                             [disabled]="
+                                navigation.isLoadingIndicated ||
                                 !userData.username ||
                                 !userData.email ||
                                 !userData.email ||
@@ -280,6 +289,7 @@
                             mat-flat-button
                             color="primary"
                             [disabled]="
+                                navigation.isLoadingIndicated ||
                                 !passwordData.currentPassword ||
                                 !passwordData.newPassword ||
                                 !passwordData.confirm
@@ -330,8 +340,9 @@
                             color="warn"
                             (click)="user.deleteAccount(currentUser)"
                             [disabled]="
+                                navigation.isLoadingIndicated ||
                                 deleteConfirmInput.value !==
-                                currentUser.username
+                                    currentUser.username
                             "
                         >
                             {{ 'general.delete' | translate }}

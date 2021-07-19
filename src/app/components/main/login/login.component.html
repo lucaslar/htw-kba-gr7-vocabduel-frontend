@@ -46,7 +46,10 @@
                     mat-flat-button
                     class="w-100"
                     color="primary"
-                    [disabled]="!(data.email && data.password)"
+                    [disabled]="
+                        navigation.isLoadingIndicated ||
+                        !(data.email && data.password)
+                    "
                 >
                     {{ 'main.login.login' | translate }}
                     <mat-icon>send</mat-icon>

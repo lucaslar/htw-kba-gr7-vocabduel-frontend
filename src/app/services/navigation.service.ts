@@ -45,8 +45,6 @@ export class NavigationService {
         private readonly auth: AuthService
     ) {
         this.mobileQuery = media.matchMedia('(max-width: 576px)');
-        // TODO: Use "is loading indicated" in a way that makes sense
-        setTimeout(() => (this.isLoadingIndicated = false), 2000);
     }
 
     checkMediaQuery(): void {

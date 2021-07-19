@@ -108,6 +108,7 @@
                     class="w-100"
                     color="primary"
                     [disabled]="
+                        navigation.isLoadingIndicated ||
                         !(
                             user.username &&
                             user.email &&

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../services/auth.service';
+import { NavigationService } from '../../../services/navigation.service';
 
 @Component({
     selector: 'app-registration',
@@ -16,6 +17,9 @@ export class RegistrationComponent {
         confirm: '',
     };
 
-    constructor(readonly auth: AuthService) {}
-  // TODO Error handling
+    constructor(
+        readonly auth: AuthService,
+        readonly navigation: NavigationService
+    ) {}
+    // TODO Error handling
 }
