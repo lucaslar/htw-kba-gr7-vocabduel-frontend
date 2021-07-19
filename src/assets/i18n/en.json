@@ -6,7 +6,8 @@
             "settings": "Settings",
             "language": "Language selection",
             "searchPerson": "User search",
-            "logout": "Logout"
+            "logout": "Logout",
+            "login": "Login"
         }
     },
     "dialog": {
@@ -59,7 +60,6 @@
             "orSignIn": "Already have an account? Sign in"
         },
         "login": {
-            "title": "Login",
             "subtitle": "Log in to your Vocabduel account",
             "login": "Sign in",
             "orSignUp": "Don't have an account yet? Sign up"

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { AuthService } from './auth.service';
+import { StorageService } from './storage.service';
 
 @Injectable({
     providedIn: 'root',
@@ -10,13 +11,7 @@ export class NavigationService {
     isLoadingIndicated = true;
     isSidebarOpened = false;
 
-    readonly navigationItems = [
-        {
-            icon: 'dashboard',
-            translationKey: 'header.actions.home',
-            colorClass: 'color-primary',
-            onClick: async () => this.navigateAndClose('dashboard'),
-        },
+    private readonly sharedNavItems = [
         {
             icon: 'person_search',
             translationKey: 'header.actions.searchPerson',
@@ -35,6 +30,16 @@ export class NavigationService {
             colorClass: 'color-primary',
             onClick: () => console.log('to be implemented'), // TODO implement
         },
+    ];
+
+    private readonly navigationItemsLoggedIn = [
+        {
+            icon: 'dashboard',
+            translationKey: 'header.actions.home',
+            colorClass: 'color-primary',
+            onClick: async () => this.navigateAndClose('dashboard'),
+        },
+        ...this.sharedNavItems,
         {
             icon: 'power_settings_new',
             translationKey: 'header.actions.logout',
@@ -43,12 +48,23 @@ export class NavigationService {
         },
     ];
 
+    private readonly navigationItemsLoggedOut = [
+        {
+            icon: 'login',
+            translationKey: 'header.actions.login',
+            colorClass: 'color-accent',
+            onClick: async () => this.navigateAndClose('login'),
+        },
+        ...this.sharedNavItems,
+    ];
+
     private readonly mobileQuery: MediaQueryList;
 
     constructor(
         media: MediaMatcher,
         private readonly router: Router,
-        private readonly auth: AuthService
+        private readonly auth: AuthService,
+        private readonly storage: StorageService
     ) {
         this.mobileQuery = media.matchMedia('(max-width: 576px)');
     }
@@ -57,6 +73,12 @@ export class NavigationService {
         if (!this.mobileQuery.matches) {
             this.isSidebarOpened = false;
         }
+    }
+
+    get navigationItems() {
+        return this.storage.refreshToken && this.storage.token
+            ? this.navigationItemsLoggedIn
+            : this.navigationItemsLoggedOut;
     }
 
     private async navigateAndClose(path: string): Promise<void> {
